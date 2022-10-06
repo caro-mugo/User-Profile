@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+
 import './User.css'
 
 
 let Users = ()=> {
     const [user, setUser] = useState([]) 
+    const [date, setDate] = useState(Date.now()) 
+    console.log(date)
+
+
     useEffect(()=>{
         fetchUser();
     }, []);
@@ -14,13 +20,14 @@ let Users = ()=> {
         
         .then ((data)=> {
             setUser(data)
-            console.log(data);
+            // console.log(data);
         }) 
         .catch(error =>{                      
             throw new Error(error);
         })
 
     }
+
     return(
         <div id="card1"key={user.id}>
            <div id="box">
@@ -31,7 +38,6 @@ let Users = ()=> {
                   <p><span>Age :</span> {user.age} 22 </p>
                   <p><span>Email : </span>{user.email} mugonycaroline@gmail.com</p>
                   <p><span>PhoneNumber:</span> {user.phonenumber} 0729284253</p>
-                  {/* <p><span>Date : </span>{user.date} 12/12/2022</p> */}
                   </div>
             {
                 user.map((user)=>
@@ -42,6 +48,11 @@ let Users = ()=> {
                     
                       <p><span>Title:</span> {user.title} Caroline</p> 
                   <p><span> Body:</span> {user.body} Mugo </p>
+
+                  {
+
+                  }
+                  <p><span>Date :</span>{moment(date).format('MM/DD/YYYY')}</p>
                   </div>
 
                     {
